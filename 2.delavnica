@@ -1,0 +1,68 @@
+import random
+
+import pygame
+
+pygame.init()
+screen=pygame.display.set_mode((1000,800))
+pygame.display.set_caption("Space Invader")
+
+
+
+raketa=pygame.image.load("rocket.png").convert_alpha()
+raketa=pygame.transform.scale(raketa,(30,60))
+sr1=pygame.image.load("enemy_rocket.png").convert_alpha()
+sr1=pygame.transform.scale(sr1,(50,50))
+sr2=pygame.image.load("enemy_rocket2.png").convert_alpha()
+sr2=pygame.transform.scale(sr2,(50,50))
+raketa_x=500-15
+raketa_y=800-60
+
+sr1_x=200
+sr1_y=0
+sr1_speed=3
+
+
+sr2_x=300
+sr2_y=0
+sr2_speed=2
+
+
+
+while True:
+    for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            pygame.quit()
+            exit()
+    sr1_y+=sr1_speed
+    sr2_y+=sr2_speed
+    if sr1_y>800:
+        sr1_y=-60
+        sr1_x=random.randint(30,900-60)
+        sr1_speed=random.randint(1,8)
+
+    mouse_pos=pygame.mouse.get_pos()
+
+    screen.fill("black")
+    screen.blit(raketa,(mouse_pos[0],raketa_y))
+    screen.blit(sr1,(sr1_x,sr1_y))
+    screen.blit(sr2,(sr2_x,sr1_y))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    pygame.display.update()
